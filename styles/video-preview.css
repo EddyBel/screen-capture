@@ -1,0 +1,20 @@
+.video__container {
+  position: relative;
+
+}
+
+.container__preview__video {
+  width: 100%;
+  max-width: 700px;
+  border-radius: 15px;
+  position: relative;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+
+  &.blur {
+    filter: blur(20px);
+    scale: 1.05;
+    position: absolute;
+    opacity: 0.8;
+  }
+}
