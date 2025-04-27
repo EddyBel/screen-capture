@@ -5,5 +5,28 @@
 @import './input.css';
 
 body {
-    background-image: linear-gradient( 110.3deg,  rgba(73,93,109,1) 4.3%, rgba(49,55,82,1) 96.7% );
+  background-color: #99adff;
+  /* background-image: radial-gradient(at 97% 27%, hsla(51, 80%, 79%, 1) 0px, transparent 50%),
+    radial-gradient(at 36% 29%, hsla(280, 84%, 60%, 1) 0px, transparent 50%),
+    radial-gradient(at 25% 31%, hsla(269, 60%, 66%, 1) 0px, transparent 50%),
+    radial-gradient(at 30% 10%, hsla(149, 97%, 74%, 1) 0px, transparent 50%),
+    radial-gradient(at 65% 22%, hsla(299, 99%, 64%, 1) 0px, transparent 50%),
+    radial-gradient(at 2% 37%, hsla(229, 84%, 75%, 1) 0px, transparent 50%),
+    radial-gradient(at 36% 91%, hsla(162, 99%, 76%, 1) 0px, transparent 50%); */
+
+  background-image: url(https://images.pexels.com/photos/167684/pexels-photo-167684.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  /* SOMBRA OPACA */
+  &::after {
+    position: absolute;
+    inset: 0;
+    content: '';
+    background-color: #00000086;
+    /* opacity: 0; */
+    z-index: -1;
+    backdrop-filter: blur(20px);
+  }
 }

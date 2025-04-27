@@ -3,45 +3,143 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Capture Web</title>
-    <script type="module" src="./scripts/index.js"></script>
-    <link rel="stylesheet" href="./styles/index.css" />
+    <meta name="description" content="Screen Capture is a tool that allows you to capture your screen and share it with others." />
+    <meta name="author" content="Eduardo Antonio Rangel Serrano" />
+    <link rel="icon" type="image/png" href="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/camera-icon-design-template-ee593dd58e39a579110fdf72b13d9ce6_screen.jpg?ts=1625418818" />
+    <title>Screen Capture</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.15/dist/umd/ffmpeg.min.js"></script>
+    <script type="module" src="/scripts/index.js"></script>
   </head>
+  <body class="bg-background dark:bg-dark-background max-w-screen h-screen">
+    <div class="min-h-screen flex flex-col">
+      <div class="flex h-screen overflow-hidden">
+        <aside
+          class="flex-none w-64 h-full bg-card dark:bg-dark-card p-4 space-y-6 border-r border-border dark:border-dark-border overflow-auto"
+        >
+          <div class="flex items-center space-x-2">
+            <img
+              src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/camera-icon-design-template-ee593dd58e39a579110fdf72b13d9ce6_screen.jpg?ts=1625418818"
+              alt="Logo"
+              class="w-8 h-8 rounded-full object-cover content-center"
+            />
+            <h1 class="text-xl font-bold">Screen Capture</h1>
+          </div>
 
-  <body>
-    <main class="container">
-      <div class="container__settings">
-        <!-- <input placeholder="Name Video" class="input" id="input-name-video" /> -->
-        <div class="container__buttons">
-          <button id="button-start-capture" class="download-button">
-            <svg height="32" width="38" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                fill="currentColor"
-                opacity="0.5"
-                d="M2 12C2 7.28595 2 4.92893 3.46447 3.46447C4.92893 2 7.28595 2 12 2C16.714 2 19.0711 2 20.5355 3.46447C22 4.92893 22 7.28595 22 12C22 16.714 22 19.0711 20.5355 20.5355C19.0711 22 16.714 22 12 22C7.28595 22 4.92893 22 3.46447 20.5355C2 19.0711 2 16.714 2 12Z"
-                stroke-width="1.5"
-              />
-              <circle cx="12" cy="12" r="4" stroke-width="1.5" fill="currentColor" />
-            </svg>
-            Grabar
-          </button>
+          <div class="space-y-4">
+            <div class="space-y-4">
+              <div class="flex items-center justify-center space-x-2">
+                <input
+                  type="text"
+                  class="w-full px-4 py-2 bg-accent text-accent-foreground rounded-xl hover:bg-opacity-90 transition-colors duration-200 flex items-center justify-center space-x-2 bg-white text-neutral-200 text-sm text-neutral-950"
+                  placeholder="Name of the video ..."
+                  id="input-name-video"
+                />
+                <!-- <select
+                  class="w-full px-4 py-2 bg-accent text-accent-foreground rounded-xl hover:bg-opacity-90 transition-colors duration-200 flex items-center justify-center space-x-2 bg-white text-neutral-200 text-sm text-neutral-950"
+                  id="videoFormatSelect"
+                >
+                  <option value="webm">WebM</option>
+                  <option value="mp4">MP4</option>
+                  <option value="avi">AVI</option>
+                </select> -->
+              </div>
 
-          <a id="button-download" class="download-button"
-            ><svg viewBox="0 0 256 256" height="32" width="38" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M74.34 85.66a8 8 0 0 1 11.32-11.32L120 108.69V24a8 8 0 0 1 16 0v84.69l34.34-34.35a8 8 0 0 1 11.32 11.32l-48 48a8 8 0 0 1-11.32 0ZM240 136v64a16 16 0 0 1-16 16H32a16 16 0 0 1-16-16v-64a16 16 0 0 1 16-16h52.4a4 4 0 0 1 2.83 1.17L111 145a24 24 0 0 0 34 0l23.8-23.8a4 4 0 0 1 2.8-1.2H224a16 16 0 0 1 16 16m-40 32a12 12 0 1 0-12 12a12 12 0 0 0 12-12"
-                fill="currentColor"
-              ></path>
-            </svg>
-            Descargar
-          </a>
-        </div>
+              <button
+                class="w-full px-4 py-3 bg-accent text-accent-foreground rounded-lg hover:bg-opacity-90 transition-colors duration-200 flex items-center justify-center space-x-2 bg-neutral-950 text-neutral-200 hover:bg-neutral-800"
+                id="button-start-capture"
+              >
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
+                  ></path>
+                </svg>
+                <span>Start Recording</span>
+              </button>
+              <a
+                class="w-full px-4 py-2 bg-secondary dark:bg-dark-secondary text-secondary-foreground dark:text-dark-secondary-foreground rounded-lg hover:bg-opacity-90 transition-colors duration-200 flex items-center justify-center space-x-2 border border-neutral-950/40 hover:border-neutral-950/60 hover:bg-neutral-200/50 cursor-pointer"
+                id="button-download"
+              >
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                  ></path>
+                </svg>
+                <span>Download</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="space-y-4">
+            <h2 class="text-lg font-semibold text-foreground dark:text-dark-foreground">Recording Settings</h2>
+            <div class="space-y-2">
+              <label class="block text-sm text-foreground dark:text-dark-foreground">Resolution</label>
+              <select
+                class="w-full p-2 rounded bg-muted dark:bg-dark-muted border border-border dark:border-dark-border"
+                id="select-resolution"
+              >
+                <option value="default">Default</option>
+                <option value="3840x2160">3840x2160 (4K UHD)</option>
+                <option value="2560x1440">2560x1440 (2K)</option>
+                <option value="1920x1080">1920x1080 (Full HD)</option>
+                <option value="1600x900">1600x900 (HD+)</option>
+                <option value="1280x720">1280x720 (HD)</option>
+                <option value="854x480">854x480 (SD)</option>
+                <option value="640x360">640x360 (nHD)</option>
+                <option value="426x240">426x240 (Low)</option>
+              </select>
+            </div>
+            <div class="space-y-2">
+              <label class="block text-sm text-foreground dark:text-dark-foreground">Frame Rate</label>
+              <select
+                class="w-full p-2 rounded bg-muted dark:bg-dark-muted border border-border dark:border-dark-border"
+                id="select-frame-rate"
+              >
+                <option>60 fps</option>
+                <option>30 fps</option>
+                <option>24 fps</option>
+              </select>
+            </div>
+            <label class="flex items-center space-x-2">
+              <input type="checkbox" class="form-checkbox text-accent" id="checkbox-capture-audio" checked />
+              <span class="text-sm text-foreground dark:text-dark-foreground">Capture Audio</span>
+            </label>
+
+            <div class="space-y-2">
+              <label class="block text-sm text-foreground dark:text-dark-foreground">Audio Source</label>
+              <select
+                class="w-full p-2 rounded bg-muted dark:bg-dark-muted border border-border dark:border-dark-border"
+                id="select-audio-source"
+              >
+                <option value="system">System</option>
+                <option value="microphone">Microphone</option>
+              </select>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Main -->
+        <main class="flex flex-col justify-center items-center p-6 bg-background dark:bg-dark-background">
+          <div
+            class="flex-1 flex items-center justify-center rounded-lg bg-card dark:bg-dark-card shadow-lg w-full h-full relative shadow-2xl shadow-black/50"
+          >
+            <video
+              src=""
+              controls
+              autoplay
+              loop
+              class="object-contain w-full h-full rounded-lg bg-black"
+              id="preview-video"
+            ></video>
+          </div>
+        </main>
       </div>
-
-      <div class="video__container">
-        <video class="container__preview__video blur" id="preview-video" controls> </video>
-        <video class="container__preview__video" id="preview-video-blur" controls> </video>
-      </div>
-    </main>
+    </div>
   </body>
 </html>

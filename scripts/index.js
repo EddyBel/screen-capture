@@ -1,1 +1,3 @@
-import './functions/capture.js'
+window.addEventListener('load', () => {
+  import('./functions/capture.js');
+});

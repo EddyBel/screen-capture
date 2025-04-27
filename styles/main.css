@@ -3,9 +3,9 @@
     min-height: 100dvh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
-    padding: 25px;
+    /* padding: 25px; */
 }
 
 .container__buttons {
@@ -25,5 +25,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
+    background: black;
+    padding: 5px;
 }
