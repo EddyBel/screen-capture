@@ -40,13 +40,13 @@ con o sin audio, y guardarlo como un archivo de video.
 1. Clona el repositorio para obtener una copia local del proyecto:
 
    ```bash
-   git clone https://github.com/EddyBel/Web-Video-Capturer.git
+   git clone https://github.com/EddyBel/screen-capture.git
    ```
 
 2. Accede a la carpeta del proyecto:
 
    ```bash
-   cd Web-Video-Capturer
+   cd screen-capture
    ```
 
 3. Abre el archivo `index.html` en tu navegador para comenzar a usar la aplicación.
